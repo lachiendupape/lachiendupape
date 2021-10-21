@@ -4,7 +4,7 @@ docker run -d \
   -e PGID=100 \
   -e TZ=Europe/London \
   -p 5076:5076 \
-  -v <path to data>:/config /Containers/Hydra2/config
-  -v <nzb download>:/downloads /Containers/NZBGet/Queued
+  -v /Containers/Hydra2/config:/config 
+  -v /Containers/NZBGet/Queued:/downloads 
   --restart unless-stopped \
   lscr.io/linuxserver/nzbhydra2
