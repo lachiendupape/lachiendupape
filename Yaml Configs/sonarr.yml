@@ -1,0 +1,16 @@
+sonarr:
+    image: lscr.io/linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/Sonarr/config:/config
+      - /share/CACHEDEV2_DATA/Photo/Tv:/tv
+      - /share/CACHEDEV1_DATA/PLEX/TV:/tv2
+      - /share/CACHEDEV2_DATA/Photo/Kids TV:/kidstv
+      - /share/CACHEDEV1_DATA/Containers/NZBGet/Queued:/downloads 
+    ports:
+      - 8989:8989
+    restart: unless-stopped

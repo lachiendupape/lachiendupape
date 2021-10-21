@@ -1,0 +1,13 @@
+organizr:
+    container_name: organizr    
+    hostname: organizr    
+    image: organizr/organizr    
+    restart: unless-stopped    
+    ports:8069:8069    
+    volumes:/home/organizr:/share/Containers/organizr/config   
+    environment:       
+    - fpm=true #true or false | using true will provide 
+    - branch=v2-master #v2-master or #v2-develop        
+    - PUID=1002        
+    - PGID=1000        
+    - TZ=${TZ}

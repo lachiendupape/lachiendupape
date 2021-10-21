@@ -1,0 +1,14 @@
+docker run -d \
+  --name=radarr \
+  -e PUID=1002 \
+  -e PGID=100 \
+  -e TZ=Europe/London \
+  -p 7878:7878 \
+  -v /path/to/data:/config /share/CACHEDEV1_DATA/Containers/radarr/config
+  -v /path/to/movies:/movies /share/CACHEDEV1_DATA/PLEX/movies
+  -v /path/to/movies2:/movies2 /share/CACHEDEV2_DATA/Photo/movies
+  -v /path/to/kidsmovies:/kidsmovies /share/CACHEDEV2_DATA/Photo/Kids
+  -v /path/to/xmasmovies:/xmasmovies /share/CACHEDEV2_DATA/Photo/xmas
+  -v /path/to/downloadclient-downloads:/downloads  /share/CACHEDEV1_DATA/Containers/NZBGet/Queued/Movies
+  --restart unless-stopped \
+  lscr.io/linuxserver/radarr

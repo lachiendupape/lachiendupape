@@ -1,0 +1,17 @@
+---
+version: "2.1"
+services:
+  nzbget:
+    image: lscr.io/linuxserver/nzbget
+    container_name: nzbget
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/NZBGet/Config:/config
+      - /share/CACHEDEV1_DATA/Containers/NZBGet/Queued:/downloads
+      - /share/CACHEDEV1_DATA/PLEX:/data
+    ports:
+      - 6789:6789
+    restart: unless-stopped
