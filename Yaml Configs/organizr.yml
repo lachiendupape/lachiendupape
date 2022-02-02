@@ -1,13 +1,16 @@
-organizr:
-    container_name: organizr    
-    hostname: organizr    
-    image: organizr/organizr    
-    restart: unless-stopped    
-    ports:8069:8069    
-    volumes:/home/organizr:/share/Containers/organizr/config   
-    environment:       
-    - fpm=true #true or false | using true will provide 
-    - branch=v2-master #v2-master or #v2-develop        
-    - PUID=1002        
-    - PGID=1000        
-    - TZ=${TZ}
+version: "2.1"
+services:
+  radarr:
+    image: organizr/organizr
+    container_name: organizr
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
+    volumes:
+      - /home/organizr:/share/Containers/organizr/config 
+     
+    ports: 
+    - 6262:6262
+    restart: unless-stopped
+    network_mode: host

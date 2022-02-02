@@ -14,3 +14,4 @@ sonarr:
     ports:
       - 8989:8989
     restart: unless-stopped
+    network_mode: host
