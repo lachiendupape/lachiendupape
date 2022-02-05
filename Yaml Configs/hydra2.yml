@@ -12,5 +12,5 @@ services:
       - /share/CACHEDEV1_DATA/Containers/NZBGet/Queued:/downloads
     ports:
       - 5076:5076
-    restart: unless-stopped
+    restart: on-failure
     network_mode: host

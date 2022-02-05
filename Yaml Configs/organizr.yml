@@ -12,5 +12,5 @@ services:
      
     ports: 
     - 6262:6262
-    restart: unless-stopped
+    restart: on-failure
     network_mode: host

@@ -3,7 +3,7 @@ services:
   plex:
     container_name: plex
     image: lscr.io/linuxserver/plex
-    restart: unless-stopped
+    restart: on-failure
     environment:
       - PUID=1002
       - PGID=100

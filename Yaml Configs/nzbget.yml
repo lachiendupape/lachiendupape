@@ -14,5 +14,5 @@ services:
       - /share/CACHEDEV1_DATA/PLEX:/data
     ports:
       - 6789:6789
-    restart: unless-stopped
+    restart: on-failure
     network_mode: host

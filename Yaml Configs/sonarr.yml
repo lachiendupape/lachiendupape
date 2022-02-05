@@ -13,5 +13,5 @@ sonarr:
       - /share/CACHEDEV1_DATA/Containers/NZBGet/Queued:/downloads 
     ports:
       - 8989:8989
-    restart: unless-stopped
+    restart: on-failure
     network_mode: host
