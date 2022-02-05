@@ -12,6 +12,7 @@ services:
       - /share/CACHEDEV1_DATA/Containers/lidarr/config:/config
       - /share/CACHEDEV2_DATA/Photo/Music:/music 
       - /share/CACHEDEV1_DATA/Containers/NZBGet/Queued:/downloads
+      - /share/CACHEDEV1_DATA/Containers/transmission/downloads/complete/music:/torrentdl
     ports:
       - 8686:8686
     restart: on-failure

@@ -9,9 +9,9 @@ services:
       - PGID=100
       - TZ=Europe/London
       - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
-      - USER=username #optional
-      - PASS=password #optional
-      - WHITELIST=iplist #optional
+      - lachiendupape=username #optional
+      - 8084F3tt!!=password #optional
+      - 192.168.1.102=iplist #optional
       - HOST_WHITELIST=dnsnane list #optional
     volumes:
       - /share/CACHEDEV1_DATA/Containers/transmission/config:/config
