@@ -10,9 +10,8 @@ services:
       - TZ=Europe/London
     volumes:
       - /share/CACHEDEV1_DATA/Containers/lidarr/config:/config
-      - /share/CACHEDEV2_DATA/Photo/Music:/music 
-      - /share/CACHEDEV1_DATA/Containers/NZBGet/Queued:/downloads
-      - /share/CACHEDEV1_DATA/Containers/transmission/downloads/complete/music:/torrentdl
+      - /share/CACHEDEV2_DATA/Photo/Music:/music
+      - /share/CACHEDEV1_DATA/Containers/transmission/downloads/complete/music:/downloads
     ports:
       - 8686:8686
     restart: on-failure
