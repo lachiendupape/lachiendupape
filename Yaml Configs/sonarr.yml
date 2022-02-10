@@ -1,4 +1,6 @@
-sonarr:
+version: "2.1"
+services:
+  sonarr:
     image: lscr.io/linuxserver/sonarr
     container_name: sonarr
     environment:
