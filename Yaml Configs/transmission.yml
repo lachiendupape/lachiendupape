@@ -15,7 +15,7 @@ services:
       - HOST_WHITELIST=dnsnane list #optional
     volumes:
       - /share/CACHEDEV1_DATA/Containers/transmission/config:/config
-      - /share/CACHEDEV1_DATA/Containers/transmission/downloads:/downloads
+      - /share/CACHEDEV1_DATA/Containers/downloads/torrents:/downloads
       - /share/CACHEDEV1_DATA/Containers/transmission/watch:/watch
     network_mode: host
     ports:

@@ -9,7 +9,7 @@ services:
       - TZ=Europe/London
     volumes:
       - /share/CACHEDEV1_DATA/Containers/Hydra2/config:/config
-      - /share/CACHEDEV1_DATA/Containers/NZBGet/Queued:/downloads
+      - /share/CACHEDEV1_DATA/Containers/downloads:/downloads
     ports:
       - 5076:5076
     restart: on-failure

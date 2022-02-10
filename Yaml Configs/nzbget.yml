@@ -10,7 +10,7 @@ services:
       - TZ=Europe/London
     volumes:
       - /share/CACHEDEV1_DATA/Containers/NZBGet/Config:/config
-      - /share/CACHEDEV1_DATA/Containers/NZBGet/Queued:/downloads
+      - /share/CACHEDEV1_DATA/Containers/downloads/usenet:/downloads
       - /share/CACHEDEV1_DATA/PLEX:/data
     ports:
       - 6789:6789

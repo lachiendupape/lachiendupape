@@ -11,7 +11,7 @@ services:
     volumes:
       - /share/CACHEDEV1_DATA/Containers/lidarr/config:/config
       - /share/CACHEDEV2_DATA/Photo/Music:/music
-      - /share/CACHEDEV1_DATA/Containers/transmission/downloads/complete/music:/downloads
+      - /share/CACHEDEV1_DATA/Containers/downloads:/downloads
     ports:
       - 8686:8686
     restart: on-failure

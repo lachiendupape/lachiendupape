@@ -14,7 +14,7 @@ services:
       - /share/CACHEDEV2_DATA/Photo/movies:/movies2 
       - /share/CACHEDEV2_DATA/Photo/Kids:/kidsmovies
       - /share/CACHEDEV2_DATA/Photo/xmas:/xmasmovies 
-      - /share/CACHEDEV1_DATA/Containers/NZBGet/Queued:/downloads 
+      - /share/CACHEDEV1_DATA/Containers/downloads:/downloads 
     ports: 
     - 7878:7878
     restart: on-failure
