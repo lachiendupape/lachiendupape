@@ -11,7 +11,6 @@ services:
     volumes:
       - /share/CACHEDEV1_DATA/Containers/Sonarr/config:/config
       - /share/CACHEDEV2_DATA/Photo/Tv:/tv
-      - /share/CACHEDEV1_DATA/PLEX/TV:/tv2
       - /share/CACHEDEV2_DATA/Photo/Kids TV:/kidstv
       - /share/CACHEDEV1_DATA/Containers/downloads:/downloads 
     ports:
