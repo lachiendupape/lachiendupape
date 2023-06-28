@@ -17,8 +17,12 @@ services:
       - influxdb
     ports:
       - 3000:3000
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
     volumes:
-      - /Users/albie/tmp/grafana:/var/lib/grafana
+      - /share/CACHEDEV1_DATA/Containers/grafana/config:/config
     logging:
       driver: "json-file"
       options:
@@ -33,10 +37,10 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - /Users/albie/tmp/influxdb/:/var/lib/influxdb
-      - /Users/albie/tmp/influxdb/data/:/var/lib/influxdb/data
-      - /Users/albie/tmp/influxdb/wal/:/var/lib/influxdb/wal
-      - /Users/albie/tmp/influxdb/meta/:/var/lib/influxdb/meta
+      - /share/CACHEDEV1_DATA/Containers/influxdb/:influxdb
+      - /share/CACHEDEV1_DATA/Containers/influxdb/data/:data
+      - /share/CACHEDEV1_DATA/Containers/influxdb/wal/:wal
+      - /share/CACHEDEV1_DATA/Containers/influxdb/meta/:meta
     ports:
       - 8083:8083
       - 8086:8086
@@ -45,6 +49,9 @@ services:
       - INFLUXDB_ADMIN_USER=admin
       - INFLUXDB_ADMIN_PASSWORD=password
       - INFLUXDB_DB=pidb
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
     logging:
       driver: "json-file"
       options:
