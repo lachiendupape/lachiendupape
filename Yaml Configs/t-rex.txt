@@ -1,0 +1,1 @@
+t-rex -a ethash -o stratum+tcp://ru-eth.hiveon.net:4444 -u 0x5B1AeB37aCFbE81794313966a5DA79df1B67305f -p x

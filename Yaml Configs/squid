@@ -1,0 +1,10 @@
+version: "3"
+services:
+  proxy:
+    image: datadog/squid:current
+    ports:
+      - "8080:3128"
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/Squid/config:/config
+      - /share/CACHEDEV1_DATA/Containers/Sonarr/config/passwords:/passwords
+    restart: always
