@@ -1,0 +1,21 @@
+---
+version: "2.1"
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/radarr/config:/config
+      - /share/CACHEDEV1_DATA/PLEX/movies:/movies 
+      - /share/CACHEDEV2_DATA/Photo/movies:/movies2 
+      - /share/CACHEDEV2_DATA/Photo/Kids:/kidsmovies
+      - /share/CACHEDEV2_DATA/Photo/xmas:/xmasmovies 
+      - /share/CACHEDEV1_DATA/Containers/downloads:/downloads 
+    ports: 
+    - 7878:7878
+    restart: on-failure
+    network_mode: host

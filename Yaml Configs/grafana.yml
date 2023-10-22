@@ -1,0 +1,51 @@
+version: '3.9'
+services:
+
+  # ##
+  # Default username = admin
+  # Default password = admin
+  # ##
+  grafana:
+    container_name: grafana
+    hostname: grafana
+    image: grafana/grafana:latest
+    restart: always
+    privileged: true
+    stdin_open: true
+    tty: true
+    depends_on:
+      - influxdb
+    ports:
+      - 3000:3000
+    volumes:
+      - /Users/albie/tmp/grafana:/var/lib/grafana
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+
+  influxdb:
+    container_name: influxdb
+    hostname: influxdb
+    image: arm32v7/influxdb:latest
+    restart: always
+    privileged: true
+    stdin_open: true
+    tty: true
+    volumes:
+      - /Users/albie/tmp/influxdb/:/var/lib/influxdb
+      - /Users/albie/tmp/influxdb/data/:/var/lib/influxdb/data
+      - /Users/albie/tmp/influxdb/wal/:/var/lib/influxdb/wal
+      - /Users/albie/tmp/influxdb/meta/:/var/lib/influxdb/meta
+    ports:
+      - 8083:8083
+      - 8086:8086
+      - 25826:25826
+    environment:
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=password
+      - INFLUXDB_DB=pidb
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
