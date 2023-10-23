@@ -15,4 +15,4 @@ services:
     ports:
       - 8787:87870
     restart: unless-stopped
-     network_mode: host
+    network_mode: host
