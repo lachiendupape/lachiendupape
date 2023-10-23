@@ -1,0 +1,18 @@
+---
+version: "2.1"
+services:
+  readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/readarr/config:/config
+      - /share/CACHEDEV1_DATA/PLEX/ebooks:/books
+      - /share/CACHEDEV1_DATA/Containers/usenet/ebooks:/downloads 
+    ports:
+      - 8787:87870
+    restart: unless-stopped
+     network_mode: host
