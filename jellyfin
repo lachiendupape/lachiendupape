@@ -1,0 +1,30 @@
+---
+version: "2.1"
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Etc/UTC
+      - JELLYFIN_PublishedServerUrl=192.168.0.5 #optional
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/jellyfin/Config:/config
+      - /share/CACHEDEV1_DATA/Containers/jellyfin/transcode:/transcode #plex
+      - /share/CACHEDEV1_DATA/Containers/jellyfin/backups:/backups #plex
+      - /share/CACHEDEV2_DATA/Photo/Tv:/tv
+      - /share/CACHEDEV2_DATA/Photo/Kids TV:/kidstv
+      - /share/CACHEDEV1_DATA/PLEX/movies:/movies 
+      - /share/CACHEDEV2_DATA/Photo/Kids:/kidsmovies 
+      - /share/CACHEDEV2_DATA/Photo/xmas:/xmasmovies 
+      - /share/CACHEDEV2_DATA/Photo/Home Movies:/homemovies
+      - /share/CACHEDEV2_DATA/Photo/Photos:/photos
+    network_mode: host
+    ports:
+      - 8096:8096
+      - 8920:8920 #optional
+      - 7359:7359/udp #optional
+      - 1900:1900/udp #optional
+    restart: unless-stopped
+ 
