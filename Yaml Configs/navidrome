@@ -13,5 +13,6 @@ services:
       - /share/CACHEDEV1_DATA/Containers/navidrome/config:/config
       - /share/CACHEDEV2_DATA/Photo/Music:/music
       - /share/CACHEDEV1_DATA/Containers/downloads:/downloads
+      - /share/CACHEDEV1_DATA/Containers/navidrome/data:/data
     restart: on-failure
     network_mode: host
