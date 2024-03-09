@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: db_admin
+      WORDPRESS_DB_PASSWORD: 8084f3tt!!
+      WORDPRESS_DB_NAME: wp_db
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/wordpress/config:/config
+      - /share/CACHEDEV1_DATA/Containers/wordpress/:/wordpress
+      - /share/CACHEDEV1_DATA/Containers/wordpress/themes/:/wordpress_themes
+      - /share/CACHEDEV1_DATA/Containers/wordpress_plugins/:/wordpress_plugins
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: db_wp
+      MYSQL_USER: db_admin
+      MYSQL_PASSWORD: 8084f3tt!!
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/wordpress/db:/db
+
+volumes:
+  wordpress:
+  db:

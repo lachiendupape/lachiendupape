@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+  hydra2:
+    image: linuxserver/tautulli
+    container_name: tautulli
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/tautulli/config:/config
+    ports:
+      - 8181:8181
+    restart: on-failure
+    network_mode: host
