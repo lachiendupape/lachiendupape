@@ -7,6 +7,7 @@ services:
     restart: always
     ports:
       - 8081:80
+    network_mode: host
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: db_admin
@@ -20,6 +21,7 @@ services:
   db:
     image: mysql:8.0
     restart: always
+    network_mode: host
     environment:
       MYSQL_DATABASE: db_wp
       MYSQL_USER: db_admin
@@ -28,6 +30,3 @@ services:
     volumes:
       - /share/CACHEDEV1_DATA/Containers/wordpress/db:/db
 
-volumes:
-  wordpress:
-  db:
