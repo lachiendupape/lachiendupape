@@ -261,7 +261,7 @@ services:
     container_name: Dashy
     image: lissy93/dashy
     volumes:
-      /share/CACHEDEV1_DATA/Containers/dashy/config:/config
+      - /share/CACHEDEV1_DATA/Containers/dashy/config:/config
     ports:
       - 4000:8080
     environment:
