@@ -82,7 +82,6 @@ services:
     ports:
       - 9696:9696
     restart: unless-stopped
-    version: "3"
   
   navidrome:
     container_name: navidromev2
@@ -133,8 +132,6 @@ services:
       - 8686:8686
     restart: on-failure
     network_mode: host
-
-    version: "2.1"
 
   organizr:
     image: organizr/organizr:latest
