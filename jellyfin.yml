@@ -13,13 +13,8 @@ services:
       - /share/CACHEDEV1_DATA/Containers/jellyfin/Config:/config
       - /share/CACHEDEV1_DATA/Containers/jellyfin/transcode:/transcode #plex
       - /share/CACHEDEV1_DATA/Containers/jellyfin/backups:/backups #plex
-      - /share/CACHEDEV2_DATA/Photo/Tv:/tv
-      - /share/CACHEDEV2_DATA/Photo/Kids TV:/kidstv
-      - /share/CACHEDEV1_DATA/PLEX/movies:/movies 
-      - /share/CACHEDEV2_DATA/Photo/Kids:/kidsmovies 
-      - /share/CACHEDEV2_DATA/Photo/xmas:/xmasmovies 
-      - /share/CACHEDEV2_DATA/Photo/Home Movies:/homemovies
-      - /share/CACHEDEV2_DATA/Photo/Photos:/photos
+      - /share/CACHEDEV1_DATA/PLEX/tech:/tech
+
     network_mode: host
     ports:
       - 8096:8096

@@ -1,0 +1,15 @@
+version: '2.1'
+
+Services:
+  portainer:
+    image: portainer/portainer=ce:latest
+    ports:
+      - "9000:9000"
+      - "8000:8000"
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/portainer/data:/data
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
+    restart: on-failure

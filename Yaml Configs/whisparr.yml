@@ -1,7 +1,7 @@
 ---
 version: "2.1"
 services:
-  prowlarr:
+  whisparr:
     image: docker/hotio/whisparr:latest
     container_name: whisparr
     environment:

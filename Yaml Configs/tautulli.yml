@@ -1,6 +1,6 @@
 version: "2.1"
 services:
-  hydra2:
+  tautulli:
     image: linuxserver/tautulli
     container_name: tautulli
     environment:
