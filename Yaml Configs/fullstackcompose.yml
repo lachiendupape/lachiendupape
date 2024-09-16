@@ -243,3 +243,49 @@ services:
       - 1900:1900/udp #optional
     restart: unless-stopped
 
+  deemix:
+    image: registry.gitlab.com/bockiii/deemix-docker
+    container_name: Deemix
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/downloads:/downloads
+      - /share/CACHEDEV1_DATA/Containers/deemix/config:/config
+    environment:
+      - PUID=1002
+      - PGID=100
+      - UMASK_SET=022
+      - DEEMIX_SINGLE_USER=true
+    ports:
+      - 6595:6595
+
+dashy:
+    container_name: Dashy
+
+    # Pull latest image from DockerHub
+    image: lissy93/dashy
+
+    # Pass in your config file below, by specifying the path on your host machine
+    volumes:
+      /share/CACHEDEV1_DATA/Containers/dashy/config:/config
+      # - /path/to/item-icons:/app/user-data/item-icons/
+
+    # Set port that web service will be served on. Keep container port as 8080
+    ports:
+      - 4000:8080
+
+    # Set any environmental variables
+    environment:
+   
+    # Specify your user ID and group ID. You can find this by running `id -u` and `id -g`
+      - PUID=1002
+      - PGID=100
+
+    # Specify restart policy
+    restart: unless-stopped
+
+    # Configure healthchecks
+    healthcheck:
+      test: ['CMD', 'node', '/app/services/healthcheck']
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
