@@ -69,7 +69,7 @@ services:
     network_mode: host
   
   whisparr:
-    image: docker/hotio/whisparr:latest
+    image: hotio/whisparr:latest
     container_name: whisparrv2
     environment:
       - PUID=1002
@@ -119,7 +119,7 @@ services:
     network_mode: host
 
   lidarr:
-    image: lscr.io/linuxserver/lidarr:latest
+    image: linuxserver/lidarr:latest
     container_name: lidarr
     environment:
       - PUID=1002
