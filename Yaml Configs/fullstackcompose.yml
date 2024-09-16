@@ -1,9 +1,9 @@
 ---
-version: "3"
+version: "2.1"
 services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
-    container_name: radarr
+    container_name: radarrv2
     environment:
       - PUID=1002
       - PGID=100
@@ -22,7 +22,7 @@ services:
   
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
-    container_name: sonarr
+    container_name: sonarrv2
     environment:
       - PUID=1002
       - PGID=100
@@ -39,7 +39,7 @@ services:
  
   nzbget:
     image: lscr.io/linuxserver/nzbget:latest
-    container_name: nzbget
+    container_name: nzbgetv2
     environment:
       - PUID=1002
       - PGID=100
@@ -55,7 +55,7 @@ services:
   
   hydra2:
     image: linuxserver/nzbhydra2:latest
-    container_name: hydra2
+    container_name: hydra2v2
     environment:
       - PUID=1002
       - PGID=100
@@ -70,7 +70,7 @@ services:
   
   whisparr:
     image: docker/hotio/whisparr:latest
-    container_name: whisparr
+    container_name: whisparrv2
     environment:
       - PUID=1002
       - PGID=100
@@ -85,7 +85,7 @@ services:
     version: "3"
   
   navidrome:
-    container_name: navidrome
+    container_name: navidromev2
     image: deluan/navidrome:latest
     ports:
       - "4533:4533"
@@ -103,7 +103,7 @@ services:
 
   jackett:
     image: lscr.io/linuxserver/jackett:latest
-    container_name: jackett
+    container_name: jackettv2
     environment:
       - PUID=1002
       - PGID=100
@@ -138,20 +138,20 @@ services:
 
   organizr:
     image: organizr/organizr:latest
-    container_name: organizr
+    container_name: organizrv2
     environment:
       - PUID=1002
       - PGID=100
       - TZ=Europe/London
     volumes:
-      - //share/CACHEDEV1_DATA/Containers/organizr/config:/config 
+      - /share/CACHEDEV1_DATA/Containers/organizr/config:/config 
     ports: 
     - 6262:6262
     restart: on-failure
     network_mode: host
 
   plex:
-    container_name: plex
+    container_name: plexv2
     image: lscr.io/linuxserver/plex:latest
     restart: on-failure
     environment:
@@ -177,7 +177,7 @@ services:
 
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
-    container_name: prowlarr
+    container_name: prowlarrv2
     environment:
       - PUID=1002
       - PGID=100
@@ -191,7 +191,7 @@ services:
 
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
-    container_name: qbittorrent
+    container_name: qbittorrentv2
     environment:
       - PUID=1002
       - PGID=100
@@ -209,7 +209,7 @@ services:
   
   tautulli:
     image: linuxserver/tautulli
-    container_name: tautulli
+    container_name: tautulliv2
     environment:
       - PUID=1002
       - PGID=100
@@ -223,7 +223,7 @@ services:
 
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
-    container_name: jellyfin
+    container_name: jellyfinv2
     environment:
       - PUID=1002
       - PGID=100
