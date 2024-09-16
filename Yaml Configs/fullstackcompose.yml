@@ -233,7 +233,7 @@ services:
     image: registry.gitlab.com/bockiii/deemix-docker
     container_name: Deemix
     volumes:
-      - /share/CACHEDEV1_DATA/Containers/downloads:/downloads
+      - //share/CACHEDEV2_DATA/Photo/Music/downloads
       - /share/CACHEDEV1_DATA/Containers/deemix/config:/config
     environment:
       - PUID=1002
