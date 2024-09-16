@@ -76,8 +76,8 @@ services:
       - PGID=100
       - TZ=Europe/London
     volumes:
-      - /Containers/whisparr/config:/config 
-      - /Containers/whisparr/downloads:/downloads 
+      - /share/CACHEDEV1_DATA/Containers/whisparr/config:/config 
+      - /share/CACHEDEV1_DATA/Containers/whisparr/downloads:/downloads 
       - /share/CACHEDEV1_DATA/PLEX/tech:/tech
     ports:
       - 9696:9696
@@ -183,8 +183,8 @@ services:
       - PGID=100
       - TZ=Europe/London
     volumes:
-      - /Containers/prowlarr/config:/config 
-      - /Containers/prowlarr/Queued:/downloads 
+      - /share/CACHEDEV1_DATA/Containers/prowlarr/config:/config 
+      - /share/CACHEDEV1_DATA/Containers/prowlarr/Queued:/downloads 
     ports:
       - 9696:9696
     restart: unless-stopped
