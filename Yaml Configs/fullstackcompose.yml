@@ -134,20 +134,6 @@ services:
     restart: on-failure
     network_mode: host
 
-  organizr:
-    image: organizr/organizr:latest
-    container_name: organizrv2
-    environment:
-      - PUID=1002
-      - PGID=100
-      - TZ=Europe/London
-    volumes:
-      - /share/CACHEDEV1_DATA/Containers/organizr/config:/config 
-    ports: 
-    - 6262:6262
-    restart: on-failure
-    network_mode: host
-
   plex:
     container_name: plexv2
     image: lscr.io/linuxserver/plex:latest
