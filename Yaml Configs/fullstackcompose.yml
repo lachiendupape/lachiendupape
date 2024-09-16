@@ -150,7 +150,7 @@ services:
     restart: on-failure
     network_mode: host
 
-plex:
+  plex:
     container_name: plex
     image: lscr.io/linuxserver/plex:latest
     restart: on-failure
@@ -175,7 +175,7 @@ plex:
     ports:
       - 32400:32400
 
-prowlarr:
+  prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
     environment:
@@ -189,7 +189,7 @@ prowlarr:
       - 9696:9696
     restart: unless-stopped
 
-qbittorrent:
+  qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent
     environment:
@@ -206,7 +206,7 @@ qbittorrent:
       - 6881:6881/udp
       - 8080:8080
     restart: on-failure
-tautulli:
+  tautulli:
     image: linuxserver/tautulli
     container_name: tautulli
     environment:
@@ -220,7 +220,7 @@ tautulli:
     restart: on-failure
     network_mode: host
 
-jellyfin:
+  jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
     container_name: jellyfin
     environment:
@@ -242,4 +242,3 @@ jellyfin:
       - 1900:1900/udp #optional
     restart: unless-stopped
 
-    
