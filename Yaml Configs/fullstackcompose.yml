@@ -206,6 +206,7 @@ services:
       - 6881:6881/udp
       - 8080:8080
     restart: on-failure
+  
   tautulli:
     image: linuxserver/tautulli
     container_name: tautulli
