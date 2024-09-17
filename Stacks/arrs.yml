@@ -69,7 +69,7 @@ services:
     network_mode: host
 
   whisparr:
-    image: docker/hotio/whisparr:latest
+    image: hotio/whisparr:latest
     container_name: whisparr
     environment:
       - PUID=1002
@@ -80,5 +80,5 @@ services:
       - /share/CACHEDEV1_DATA/Containers/downloads:/downloads 
       - /share/CACHEDEV1_DATA/PLEX/tech:/tech
     ports:
-      - 966969:6969
+      - 6969:6969
     restart: unless-stopped
