@@ -1,7 +1,7 @@
 version: '2.1'
 services:
   plex:
-    container_name: plex
+    container_name: plexv2
     image: lscr.io/linuxserver/plex:latest
     restart: on-failure
     environment:

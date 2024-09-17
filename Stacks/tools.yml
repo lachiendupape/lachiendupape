@@ -1,0 +1,34 @@
+version: "3"
+services:
+  tautulli:
+    image: linuxserver/tautulli:latest
+    container_name: tautulliv2
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/tautulli/config:/config
+    ports:
+      - 8181:8181
+    restart: on-failure
+    network_mode: host
+
+  dashy:
+    container_name: Dashy
+    image: lissy93/dashy
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/dashy/config:/config
+    ports:
+      - 4000:8080
+    environment:
+      - PUID=1002
+      - PGID=100
+    restart: unless-stopped
+    network_mode: host
+    healthcheck:
+      test: ['CMD', 'node', '/app/services/healthcheck']
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

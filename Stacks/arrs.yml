@@ -1,0 +1,69 @@
+version: "3"
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarrv2
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/radarr/config:/config
+      - /share/CACHEDEV1_DATA/PLEX/movies:/movies 
+      - /share/CACHEDEV2_DATA/Photo/movies:/movies2 
+      - /share/CACHEDEV2_DATA/Photo/Kids:/kidsmovies
+      - /share/CACHEDEV2_DATA/Photo/xmas:/xmasmovies 
+      - /share/CACHEDEV1_DATA/Containers/downloads:/downloads 
+    ports: 
+    - 7878:7878
+    restart: on-failure
+    network_mode: host
+  
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarrv2
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/Sonarr/config:/config
+      - /share/CACHEDEV2_DATA/Photo/Tv:/tv
+      - /share/CACHEDEV2_DATA/Photo/Kids TV:/kidstv
+      - /share/CACHEDEV1_DATA/Containers/downloads:/downloads 
+    ports:
+      - 8989:8989
+    restart: on-failure
+    network_mode: host
+    
+  lidarr:
+    image: linuxserver/lidarr:latest
+    container_name: lidarrv2
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/lidarr/config:/config
+      - /share/CACHEDEV2_DATA/Photo/Music:/music
+      - /share/CACHEDEV1_DATA/Containers/downloads:/downloads
+    ports:
+      - 8686:8686
+    restart: on-failure
+    network_mode: host
+
+  
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarrv2
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/prowlarr/config:/config 
+      - /share/CACHEDEV1_DATA/Containers/prowlarr/Queued:/downloads 
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+    network_mode: host
