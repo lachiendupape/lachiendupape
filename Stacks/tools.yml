@@ -14,21 +14,17 @@ services:
     restart: on-failure
     network_mode: host
 
-  dashy:
-    container_name: Dashy
-    image: lissy93/dashy
-    volumes:
-      - /share/CACHEDEV1_DATA/Containers/dashy/config:/config
-    ports:
-      - 4000:4000
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
     environment:
       - PUID=1002
       - PGID=100
-    restart: unless-stopped
+      - TZ=Europe/London
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/watchtower/config:/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 8282:8282
+    restart: on-failure
     network_mode: host
-    healthcheck:
-      test: ['CMD', 'node', '/app/services/healthcheck']
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
