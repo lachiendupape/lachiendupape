@@ -12,6 +12,7 @@ services:
       - /share/CACHEDEV1_DATA/Containers/NZBGet/Config:/config
       - /share/CACHEDEV1_DATA/Containers/downloads/usenet:/downloads
       - /share/CACHEDEV1_DATA/PLEX:/data
+      - /share/CACHEDEV1_DATA/PLEX/tech:/tech
     ports:
       - 6789:6789
     restart: on-failure
@@ -28,6 +29,7 @@ services:
       - /share/CACHEDEV1_DATA/Containers/sabnzbd/Config:/config
       - /share/CACHEDEV1_DATA/Containers/downloads/usenet:/downloads
       - /share/CACHEDEV1_DATA/Containers/downloads/usenet/intermediate:/incomplete-downloads
+      - /share/CACHEDEV1_DATA/PLEX/tech:/tech
     ports:
       - 6800:6800
     restart: unless-stopped
