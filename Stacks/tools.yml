@@ -28,8 +28,8 @@ services:
       - 8282:8282
     restart: on-failure
     network_mode: host
-
-   heimdall:
+  
+  heimdall:
     image: lscr.io/linuxserver/heimdall:latest
     container_name: heimdall
     environment:
