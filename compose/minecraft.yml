@@ -1,0 +1,7 @@
+services:
+ minecraft:
+   image: itzg/minecraft-server
+   ports:
+     - "25565:25565"
+volumes:
+     - share/CACHEDEV1_DATA/Containers/minecraft/data:/data"

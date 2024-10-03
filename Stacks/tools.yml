@@ -35,8 +35,8 @@ services:
     volumes:
         - /share/CACHEDEV1_DATA/Containers/nginx/config:/config
     ports:
-      - 8081:8081
-      - 4432:4432
+      - 8081:80
+      - 4432:443
     network_mode: host
     restart: unless-stopped
 
@@ -50,7 +50,7 @@ services:
     volumes:
       - /share/CACHEDEV1_DATA/Containers/heimdall/config:/config
     ports:
-      - 8080:8080
-      - 4431:4431
+      - 8080:80
+      - 4431:443
     network_mode: host
     restart: unless-stopped
