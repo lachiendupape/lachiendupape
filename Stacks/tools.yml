@@ -34,6 +34,7 @@ services:
     container_name: nginx
     volumes:
         - /share/CACHEDEV1_DATA/Containers/nginx/config:/config
+        - /share/CACHEDEV1_DATA/Containers/nginx/templates:/etc/nginx/templates
     ports:
       - 8081:80
       - 4432:443
