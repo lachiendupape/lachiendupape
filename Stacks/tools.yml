@@ -39,7 +39,7 @@ services:
     volumes:
       - /share/CACHEDEV1_DATA/Containers/heimdall/config:/config
     ports:
-      - 8080:80
-      - 4431:443
+      - 8080:8080
+      - 4431:4431
     network_mode: host
     restart: unless-stopped
