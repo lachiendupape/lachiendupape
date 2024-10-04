@@ -29,22 +29,6 @@ services:
     restart: on-failure
     network_mode: host
   
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    environment:
-      - PUID=1002
-      - PGID=100
-      - TZ=Europe/London
-    volumes:
-        - /share/CACHEDEV1_DATA/Containers/nginx/config:/config
-        - /share/CACHEDEV1_DATA/Containers/nginx/templates:/etc/nginx/templates
-    ports:
-      - 8081:80
-      - 4432:443
-    network_mode: host
-    restart: unless-stopped
-
   heimdall:
     image: lscr.io/linuxserver/heimdall:latest
     container_name: heimdall
