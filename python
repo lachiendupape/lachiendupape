@@ -5,9 +5,9 @@ from datetime import datetime
 
 # Configure Reddit API client
 reddit = praw.Reddit(
-    client_id='YOUR_CLIENT_ID',
-    client_secret='YOUR_CLIENT_SECRET',
-    user_agent='YOUR_USER_AGENT'
+    client_id="r4Wg_3jOfcWQYmDJff3NWg",
+    client_secret="bVSX5k5AzcmAi6U9zaNL5OqWdqFWTA",
+    user_agent='bsky bot'
 )
 
 # Function to fetch top posts
