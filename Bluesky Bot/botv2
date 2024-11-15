@@ -6,13 +6,13 @@ from datetime import datetime
 
 # Authenticate with Bluesky
 client = Client()
-client.login('reddittest.bsky.social', '8084F3tt!!')
+client.login('bhafcreddit.bsky.social', '8084F3tt!!')
 
 #get did
 from atproto import IdResolver  # for async use AsyncIdResolver
 
 resolver = IdResolver()
-did = resolver.handle.resolve('reddittest.bsky.social')
+did = resolver.handle.resolve('bhafcreddit.bsky.social')
 did_doc = resolver.did.resolve(did)
 
 print(did)
