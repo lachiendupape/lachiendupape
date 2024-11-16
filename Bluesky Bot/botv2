@@ -3,20 +3,17 @@ import praw
 import schedule
 import time
 from datetime import datetime
+from atproto import IdResolver  # For resolving DID
 
 # Authenticate with Bluesky
 client = Client()
 client.login('bhafcreddit.bsky.social', '8084F3tt!!')
 
-#get did
-from atproto import IdResolver  # for async use AsyncIdResolver
-
+# Get DID
 resolver = IdResolver()
 did = resolver.handle.resolve('bhafcreddit.bsky.social')
-did_doc = resolver.did.resolve(did)
 
-print(did)
-print(did_doc)
+print(f"DID: {did}")
 
 # Set up Reddit client
 reddit = praw.Reddit(
@@ -41,26 +38,14 @@ def save_posted_id(post_id):
     with open(POSTED_POSTS_FILE, 'a') as file:
         file.write(f"{post_id}\n")
 
-# function to clear post IDs
-def clear_posted_ids():
-    with open(POSTED_POSTS_FILE, 'w') as file:
-        file.write("")  # Overwrites the file with an empty string
-    print(f"Cleared all saved post IDs from {POSTED_POSTS_FILE}")
-
 # Function to post to Bluesky using rich text
-def post_to_bluesky(title, url, subreddit_url, thumbnail_url=None):
+def post_to_bluesky(title, url, subreddit_url, thumbnail_url):
     text = f"{title}\n\nRead more here.\n\n#bhafc #reddit\n\nCome join the conversation!"
+    
+    if thumbnail_url:
+        text += f"\n\nThumbnail: {thumbnail_url}"
 
     facets = [
-        {
-            "index": {"byteStart": 0, "byteEnd": len(title)},
-            "features": [
-                {
-                    "$type": "app.bsky.richtext.facet#link",
-                    "uri": url
-                }
-            ]
-        },
         {
             "index": {"byteStart": text.find("Read more here"), "byteEnd": text.find("Read more here") + len("Read more here")},
             "features": [
@@ -80,8 +65,8 @@ def post_to_bluesky(title, url, subreddit_url, thumbnail_url=None):
             ]
         }
     ]
- 
- # Add thumbnail link to facets if available
+
+    # Add thumbnail link to facets if available
     if thumbnail_url:
         facets.append({
             "index": {"byteStart": text.find("Thumbnail:"), "byteEnd": text.find("Thumbnail:") + len("Thumbnail:")},
@@ -93,7 +78,7 @@ def post_to_bluesky(title, url, subreddit_url, thumbnail_url=None):
             ]
         })
 
- # Create the post data
+    # Create the post data
     post_data = {
         "repo": did,
         "collection": "app.bsky.feed.post",
@@ -104,13 +89,10 @@ def post_to_bluesky(title, url, subreddit_url, thumbnail_url=None):
             "createdAt": datetime.utcnow().isoformat() + "Z"
         }
     }
-    
-# Post the record using the AT Protocol client
-    client.com.atproto.repo.create_record(post_data)
-    print(f"Posted to Bluesky: {text}")
 
-# Clears the file when called
-clear_posted_ids() 
+    # Post the record using the AT Protocol client
+    client.com.atproto.repo.create_record(**post_data)
+    print(f"Posted to Bluesky: {text}")
 
 # Function to fetch top posts and post them to Bluesky
 def fetch_top_posts():
@@ -127,15 +109,18 @@ def fetch_top_posts():
             print(f"Skipping already posted post: {post.title}")
             continue
 
+        # Extract thumbnail URL
+        thumbnail_url = post.thumbnail if post.thumbnail not in ["self", "default", ""] else None
+
         # Post to Bluesky
-        post_to_bluesky(post.title, post.url, subreddit_url)
+        post_to_bluesky(post.title, post.url, subreddit_url, thumbnail_url)
 
         # Save the post ID to the file
         save_posted_id(post.id)
 
 # Schedule the bot to run twice daily
 schedule.every().day.at("09:00").do(fetch_top_posts)  # Morning
-schedule.every().day.at("18:22").do(fetch_top_posts)  # Evening
+schedule.every().day.at("19:30").do(fetch_top_posts)  # Evening
 
 print("Bot started. Fetching top posts twice daily...")
 
