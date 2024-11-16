@@ -1,0 +1,5 @@
+from atproto import Client
+
+client = Client()
+client.login('bhafcreddit.bsky.social', '8084F3tt!!')
+client.send_post(text='Hello World!')
