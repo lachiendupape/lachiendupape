@@ -78,21 +78,23 @@ def post_to_bluesky(title, url, subreddit_url, thumbnail_url):
             ]
         })
 
-    # Create the post data
-    post_data = {
-        "repo": did,
-        "collection": "app.bsky.feed.post",
-        "record": {
-            "$type": "app.bsky.feed.post",
-            "text": text,
-            "facets": facets,
-            "createdAt": datetime.utcnow().isoformat() + "Z"
-        }
+    # Create the post record directly
+    record = {
+        "$type": "app.bsky.feed.post",
+        "text": text,
+        "facets": facets,
+        "createdAt": datetime.utcnow().isoformat() + "Z"
     }
 
     # Post the record using the AT Protocol client
-    client.com.atproto.repo.create_record(**post_data)
+    client.com.atproto.repo.create_record(
+        repo=did,                   # The DID for your account
+        collection="app.bsky.feed.post",  # Bluesky feed collection
+        record=record               # The record content
+    )
     print(f"Posted to Bluesky: {text}")
+
+
 
 # Function to fetch top posts and post them to Bluesky
 def fetch_top_posts():
@@ -120,7 +122,7 @@ def fetch_top_posts():
 
 # Schedule the bot to run twice daily
 schedule.every().day.at("09:00").do(fetch_top_posts)  # Morning
-schedule.every().day.at("19:30").do(fetch_top_posts)  # Evening
+schedule.every().day.at("16:35").do(fetch_top_posts)  # Evening
 
 print("Bot started. Fetching top posts twice daily...")
 
