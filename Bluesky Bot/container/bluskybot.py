@@ -110,7 +110,7 @@ def post_to_bluesky(title, url, subreddit_url, thumbnail_url=None):
     print(f"Posted to Bluesky: {text}")
 
 # Clears the file when called
-clear_posted_ids() 
+# clear_posted_ids() 
 
 # Function to fetch top posts and post them to Bluesky
 def fetch_top_posts():
@@ -134,12 +134,15 @@ def fetch_top_posts():
         save_posted_id(post.id)
 
 # Schedule the bot to run twice daily
-schedule.every().day.at("09:00").do(fetch_top_posts)  # Morning
-schedule.every().day.at("18:22").do(fetch_top_posts)  # Evening
+schedule.every().day.at("00:00").do(fetch_top_posts)  # Midnight
+schedule.every().day.at("06:00").do(fetch_top_posts)  # Morning
+schedule.every().day.at("12:00").do(fetch_top_posts)  # noon
+schedule.every().day.at("18:00").do(fetch_top_posts)  # evening
 
 print("Bot started. Fetching top posts twice daily...")
 
 # Run the scheduled jobs
 while True:
     schedule.run_pending()
+
     time.sleep(1)
