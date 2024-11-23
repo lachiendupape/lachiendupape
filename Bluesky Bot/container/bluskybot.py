@@ -133,13 +133,13 @@ def fetch_top_posts():
         # Save the post ID to the file
         save_posted_id(post.id)
 
-# Schedule the bot to run twice daily
+# Schedule the bot to run four times daily
 schedule.every().day.at("00:00").do(fetch_top_posts)  # Midnight
 schedule.every().day.at("06:00").do(fetch_top_posts)  # Morning
 schedule.every().day.at("12:00").do(fetch_top_posts)  # noon
 schedule.every().day.at("18:00").do(fetch_top_posts)  # evening
 
-print("Bot started. Fetching top posts twice daily...")
+print("Bot started. Fetching top posts four times daily...")
 
 # Run the scheduled jobs
 while True:
