@@ -1,0 +1,42 @@
+version: "3"
+services:
+  nginx-proxy-manager:
+    container_name: nginx-proxy-manager
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    env_file: .env
+    networks:
+      - media_network
+    ports:
+      - "80:80"      # HTTP
+      - "443:443"    # HTTPS
+      - "81:81"      # Nginx Proxy Manager Admin UI
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/nginx-proxy-manager/data:/data
+      - /share/CACHEDEV1_DATA/Containers/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+
+  heimdall:
+    image: lscr.io/linuxserver/heimdall:latest
+    container_name: heimdall
+    env_file: .env
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/heimdall/config:/config
+    networks:
+      - media_network
+    restart: unless-stopped
+
+  fail2ban:
+    image: crazymax/fail2ban:latest
+    container_name: fail2ban
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/fail2ban/data:/data
+      - /var/log:/var/log:ro
+    networks:
+      - media_network
+
+networks:
+  media_network:
+    driver: bridge
