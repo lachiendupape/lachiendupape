@@ -1,0 +1,70 @@
+import discord
+import requests
+import pandas as pd
+import ollama  # For local AI model
+
+# Discord Bot Token (replace with your actual token)
+DISCORD_BOT_TOKEN = "YOUR_DISCORD_BOT_TOKEN"
+
+# Tautulli API Settings
+TAUTULLI_API_URL = "http://localhost:8181/api/v2"  # Update if different
+TAUTULLI_API_KEY = "YOUR_TAUTULLI_API_KEY"
+
+# Navidrome API Settings
+NAVIDROME_API_URL = "http://localhost:4533/rest"
+NAVIDROME_API_KEY = "YOUR_NAVIDROME_API_KEY"
+
+# Set up Discord bot
+intents = discord.Intents.default()
+client = discord.Client(intents=intents)
+
+async def get_watched_movies():
+    """Fetch watched movies from Tautulli"""
+    url = f"{TAUTULLI_API_URL}?apikey={TAUTULLI_API_KEY}&cmd=get_history&count=10"
+    response = requests.get(url).json()
+    movies = [entry["title"] for entry in response["response"]["data"]["records"]]
+    return movies
+
+async def get_music_history():
+    """Fetch recent music from Navidrome"""
+    url = f"{NAVIDROME_API_URL}/getHistory.view?u=admin&p=yourpassword&t={NAVIDROME_API_KEY}&v=1.16.1&c=DiscordBot&f=json"
+    response = requests.get(url).json()
+    music = [entry["title"] for entry in response["subsonic-response"]["history"]["entry"]]
+    return music
+
+async def ask_ai(prompt):
+    """Generate AI-based recommendations using Ollama"""
+    model = "mistral"  # Change to "llama3" if using Llama 3
+    response = ollama.chat(model=model, messages=[{"role": "user", "content": prompt}])
+    return response["message"]["content"]
+
+@client.event
+async def on_ready():
+    print(f"Logged in as {client.user}")
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+
+    if message.content.startswith("!recommend movie"):
+        watched = await get_watched_movies()
+        prompt = f"Based on these movies: {watched}, recommend a great film."
+        ai_response = await ask_ai(prompt)
+        await message.channel.send(f"🎬 Recommended Movie: {ai_response}")
+
+    if message.content.startswith("!recommend music"):
+        history = await get_music_history()
+        prompt = f"Based on these songs: {history}, recommend an album."
+        ai_response = await ask_ai(prompt)
+        await message.channel.send(f"🎵 Recommended Album: {ai_response}")
+
+    if message.content.startswith("!recommend both"):
+        watched = await get_watched_movies()
+        history = await get_music_history()
+        prompt = f"I watched {watched} and listened to {history}. Suggest a movie and an album that match."
+        ai_response = await ask_ai(prompt)
+        await message.channel.send(f"🎬🎵 AI Suggests: {ai_response}")
+
+# Run bot
+client.run(DISCORD_BOT_TOKEN)
