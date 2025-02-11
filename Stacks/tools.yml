@@ -3,43 +3,44 @@ services:
   tautulli:
     image: linuxserver/tautulli:latest
     container_name: tautulliv2
-    environment:
-      - PUID=1002
-      - PGID=100
-      - TZ=Europe/London
+    env_file: .env
     volumes:
       - /share/CACHEDEV1_DATA/Containers/tautulli/config:/config
-    ports:
-      - 8181:8181
+    labels:
+      - "nginx_proxy.enable=true"
+      - "nginx_proxy.domain=tautulli.alexlovett.co.uk"
+      - "nginx_proxy.ssl=true"
     restart: on-failure
-    network_mode: host
+    networks:
+      - media_network
 
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
-    environment:
-      - PUID=1002
-      - PGID=100
-      - TZ=Europe/London
+    env_file: .env
     volumes:
       - /share/CACHEDEV1_DATA/Containers/watchtower/config:/config
       - /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - 8282:8282
+    labels:
+      - "nginx_proxy.enable=false"
     restart: on-failure
-    network_mode: host
+    networks:
+      - media_network
   
   heimdall:
     image: lscr.io/linuxserver/heimdall:latest
     container_name: heimdall
-    environment:
-      - PUID=1002
-      - PGID=100
-      - TZ=Europe/London
+    env_file: .env
     volumes:
       - /share/CACHEDEV1_DATA/Containers/heimdall/config:/config
-    ports:
-      - 8082:8082
-      - 4431:4431
-    network_mode: host
+    labels:
+      - "nginx_proxy.enable=true"
+      - "nginx_proxy.domain=heimdall.alexlovett.co.uk"
+      - "nginx_proxy.ssl=true"
+    networks:
+      - media_network
     restart: unless-stopped
+
+networks:
+  media_network:
+    external: true
