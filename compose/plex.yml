@@ -1,11 +1,11 @@
-version: '3'
+version: "3"
 services:
   plex:
     container_name: plexv2
     image: lscr.io/linuxserver/plex:latest
     restart: on-failure
     env_file: .env
-    network_mode: host  # Keep host mode for best compatibility
+    network_mode: host  # Keeping host mode for local network discovery
     volumes:
       - /share/CACHEDEV1_DATA/Containers/plex/Config:/config
       - /share/CACHEDEV1_DATA/Containers/plex/transcode:/transcode
@@ -20,3 +20,7 @@ services:
       - /share/CACHEDEV2_DATA/Photo/Music:/music
     ports:
       - 32400:32400
+    labels:
+      - "nginx_proxy.enable=true"
+      - "nginx_proxy.domain=plex.alexlovett.co.uk"
+      - "nginx_proxy.ssl=true"
