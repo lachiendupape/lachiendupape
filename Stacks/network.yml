@@ -15,16 +15,7 @@ services:
       - /share/CACHEDEV1_DATA/Containers/nginx-proxy-manager/data:/data
       - /share/CACHEDEV1_DATA/Containers/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
 
-  heimdall:
-    image: lscr.io/linuxserver/heimdall:latest
-    container_name: heimdall
-    env_file: .env
-    volumes:
-      - /share/CACHEDEV1_DATA/Containers/heimdall/config:/config
-    networks:
-      - media_network
-    restart: unless-stopped
-
+  
   fail2ban:
     image: crazymax/fail2ban:latest
     container_name: fail2ban
@@ -35,8 +26,30 @@ services:
       - /share/CACHEDEV1_DATA/Containers/fail2ban/data:/data
       - /var/log:/var/log:ro
     networks:
-      - media_network
+      - host
 
-networks:
-  media_network:
-    driver: bridge
+ 
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    # For DHCP it is recommended to remove these ports and instead add: network_mode: "host"
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    #  - "67:67/udp" # Only required if you are using Pi-hole as your DHCP server
+      - "80:80/tcp"
+    env_file: .env
+      
+    WEBPASSWORD: 8084F3tt!!
+    # Volumes store your data between container upgrades
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/pihole/etc-pihole:/etc/pihole'
+      - /share/CACHEDEV1_DATA/Containers/pihole/etc-dnsmasq.d:/etc/dnsmasq.d'
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    cap_add:
+    #  - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
+    restart: unless-stopped
+    networks:
+      - host
+
+
