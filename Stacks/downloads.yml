@@ -63,7 +63,7 @@ services:
       - "nginx_proxy.ssl=true"
     restart: on-failure
     networks:
-      - mbridge
+      - bridge
 
 networks:
   bridge:
