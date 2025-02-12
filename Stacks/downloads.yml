@@ -14,7 +14,7 @@ services:
       - "nginx_proxy.domain=nzbget.alexlovett.co.uk"
       - "nginx_proxy.ssl=true"
     restart: on-failure
-    networks:
+    
 
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
@@ -30,7 +30,7 @@ services:
       - "nginx_proxy.domain=sabnzbd.alexlovett.co.uk"
       - "nginx_proxy.ssl=true"
     restart: unless-stopped
-    networks:
+    
 
   hydra2:
     image: linuxserver/nzbhydra2:latest
@@ -44,7 +44,7 @@ services:
       - "nginx_proxy.domain=hydra2.alexlovett.co.uk"
       - "nginx_proxy.ssl=true"
     restart: on-failure
-    networks:
+    
 
   jackett:
     image: lscr.io/linuxserver/jackett:latest
@@ -58,5 +58,5 @@ services:
       - "nginx_proxy.domain=jackett.alexlovett.co.uk"
       - "nginx_proxy.ssl=true"
     restart: on-failure
-    networks:
+    
 
