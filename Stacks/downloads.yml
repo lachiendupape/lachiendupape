@@ -1,5 +1,4 @@
 ---
-version: "3"
 services:
   nzbget:
     image: lscr.io/linuxserver/nzbget:latest
@@ -65,6 +64,3 @@ services:
     networks:
       - lxcbr0
 
-networks:
-  lxcbr0:
-    external: true
