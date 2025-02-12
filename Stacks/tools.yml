@@ -27,19 +27,6 @@ services:
     networks:
       - media_network
   
-  heimdall:
-    image: lscr.io/linuxserver/heimdall:latest
-    container_name: heimdall
-    env_file: .env
-    volumes:
-      - /share/CACHEDEV1_DATA/Containers/heimdall/config:/config
-    labels:
-      - "nginx_proxy.enable=true"
-      - "nginx_proxy.domain=heimdall.alexlovett.co.uk"
-      - "nginx_proxy.ssl=true"
-    networks:
-      - media_network
-    restart: unless-stopped
 
 networks:
   media_network:
