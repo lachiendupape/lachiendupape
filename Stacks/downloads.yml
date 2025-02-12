@@ -15,7 +15,6 @@ services:
       - "nginx_proxy.ssl=true"
     restart: on-failure
     networks:
-      - lxcbr0
 
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
@@ -32,7 +31,6 @@ services:
       - "nginx_proxy.ssl=true"
     restart: unless-stopped
     networks:
-      - lxcbr0
 
   hydra2:
     image: linuxserver/nzbhydra2:latest
@@ -47,7 +45,6 @@ services:
       - "nginx_proxy.ssl=true"
     restart: on-failure
     networks:
-      - lxcbr0
 
   jackett:
     image: lscr.io/linuxserver/jackett:latest
@@ -62,5 +59,4 @@ services:
       - "nginx_proxy.ssl=true"
     restart: on-failure
     networks:
-      - lxcbr0
 
