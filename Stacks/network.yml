@@ -40,7 +40,6 @@ services:
       - "80:80/tcp"
     env_file: .env
       
-    WEBPASSWORD: 8084F3tt!!
     # Volumes store your data between container upgrades
     volumes:
       - /share/CACHEDEV1_DATA/Containers/pihole/etc-pihole:/etc/pihole'
