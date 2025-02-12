@@ -3,42 +3,38 @@ services:
   navidrome:
     container_name: navidromev2
     image: deluan/navidrome:latest
-    env_file: .env
+    ports:
+      - "4533:4533"
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
     volumes:
       - /share/CACHEDEV1_DATA/Containers/navidrome/config:/config
       - /share/CACHEDEV2_DATA/Photo/Music:/music
       - /share/CACHEDEV1_DATA/Containers/downloads:/downloads
       - /share/CACHEDEV1_DATA/Containers/navidrome/data:/data
-    labels:
-      - "nginx_proxy.enable=true"
-      - "nginx_proxy.domain=navidrome.alexlovett.co.uk"
-      - "nginx_proxy.ssl=true"
     restart: on-failure
-    networks:
-      - media_network
+    network_mode: host
 
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
     container_name: jellyfinv2
-    env_file: .env
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Etc/UTC
+      - JELLYFIN_PublishedServerUrl=192.168.0.5 #optional
     volumes:
       - /share/CACHEDEV1_DATA/Containers/jellyfin/Config:/config
-      - /share/CACHEDEV1_DATA/Containers/jellyfin/transcode:/transcode
-      - /share/CACHEDEV1_DATA/Containers/jellyfin/backups:/backups
+      - /share/CACHEDEV1_DATA/Containers/jellyfin/transcode:/transcode #plex
+      - /share/CACHEDEV1_DATA/Containers/jellyfin/backups:/backups #plex
       - /share/CACHEDEV1_DATA/PLEX/tech:/tech
-    labels:
-      - "nginx_proxy.enable=true"
-      - "nginx_proxy.domain=jellyfin.alexlovett.co.uk"
-      - "nginx_proxy.ssl=true"
-    networks:
-      - media_network
+
+    network_mode: host
     ports:
       - 8096:8096
-      - 8920:8920
-      - 7359:7359/udp
-      - 1910:1900/udp
+      - 8920:8920 #optional
+      - 7359:7359/udp #optional
+      - 1900:1900/udp #optional
     restart: unless-stopped
-
-networks:
-  media_network:
-    external: true

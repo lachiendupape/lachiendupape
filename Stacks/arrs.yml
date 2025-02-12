@@ -3,7 +3,10 @@ services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarrv2
-    env_file: .env
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
     volumes:
       - /share/CACHEDEV1_DATA/Containers/radarr/config:/config
       - /share/CACHEDEV1_DATA/PLEX/movies:/movies 
@@ -11,78 +14,72 @@ services:
       - /share/CACHEDEV2_DATA/Photo/Kids:/kidsmovies
       - /share/CACHEDEV2_DATA/Photo/xmas:/xmasmovies 
       - /share/CACHEDEV1_DATA/Containers/downloads:/downloads 
-    labels:
-      - "nginx_proxy.enable=true"
-      - "nginx_proxy.domain=radarr.alexlovett.co.uk"
-      - "nginx_proxy.ssl=true"
+    ports: 
+    - 7878:7878
     restart: on-failure
-    networks:
-      - media_network
+    network_mode: host
   
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarrv2
-    env_file: .env
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
     volumes:
       - /share/CACHEDEV1_DATA/Containers/Sonarr/config:/config
       - /share/CACHEDEV2_DATA/Photo/Tv:/tv
       - /share/CACHEDEV2_DATA/Photo/Kids TV:/kidstv
       - /share/CACHEDEV1_DATA/Containers/downloads:/downloads 
-    labels:
-      - "nginx_proxy.enable=true"
-      - "nginx_proxy.domain=sonarr.alexlovett.co.uk"
-      - "nginx_proxy.ssl=true"
+    ports:
+      - 8989:8989
     restart: on-failure
-    networks:
-      - media_network
+    network_mode: host
     
   lidarr:
     image: linuxserver/lidarr:latest
     container_name: lidarrv2
-    env_file: .env
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
     volumes:
       - /share/CACHEDEV1_DATA/Containers/lidarr/config:/config
       - /share/CACHEDEV2_DATA/Photo/Music:/music
       - /share/CACHEDEV1_DATA/Containers/downloads:/downloads
-    labels:
-      - "nginx_proxy.enable=true"
-      - "nginx_proxy.domain=lidarr.alexlovett.co.uk"
-      - "nginx_proxy.ssl=true"
+    ports:
+      - 8686:8686
     restart: on-failure
-    networks:
-      - media_network
+    network_mode: host
 
+  
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarrv2
-    env_file: .env
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
     volumes:
       - /share/CACHEDEV1_DATA/Containers/prowlarr/config:/config 
       - /share/CACHEDEV1_DATA/Containers/prowlarr/Queued:/downloads 
-    labels:
-      - "nginx_proxy.enable=true"
-      - "nginx_proxy.domain=prowlarr.alexlovett.co.uk"
-      - "nginx_proxy.ssl=true"
+    ports:
+      - 9696:9696
     restart: unless-stopped
-    networks:
-      - media_network
+    network_mode: host
 
   whisparr:
     image: hotio/whisparr:latest
     container_name: whisparr
-    env_file: .env
+    environment:
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London
     volumes:
       - /share/CACHEDEV1_DATA/Containers/whisparr/config:/config 
       - /share/CACHEDEV1_DATA/Containers/downloads:/downloads 
       - /share/CACHEDEV1_DATA/PLEX/tech:/tech
-    labels:
-      - "nginx_proxy.enable=true"
-      - "nginx_proxy.domain=whisparr.alexlovett.co.uk"
-      - "nginx_proxy.ssl=true"
+    ports:
+      - 6969:6969
+    network_mode: host
     restart: unless-stopped
-    networks:
-      - media_network
-
-networks:
-  media_network:
-    external: true
