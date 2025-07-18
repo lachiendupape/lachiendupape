@@ -36,12 +36,13 @@ def fetch_top_posts():
     return top_posts
 
 # Schedule the bot to run twice daily
-schedule.every().day.at("09:00").do(fetch_top_posts)  # Morning
-schedule.every().day.at("21:00").do(fetch_top_posts)  # Evening
-
-print("Bot started. Fetching top posts twice daily...")
+# schedule.every().day.at("09:00").do(fetch_top_posts)
+# schedule.every().day.at("21:00").do(fetch_top_posts)
 
 # Run the scheduled jobs
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
+
+if __name__ == "__main__":
+    fetch_top_posts()
