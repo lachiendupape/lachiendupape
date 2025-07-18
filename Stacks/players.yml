@@ -1,10 +1,9 @@
 version: "3"
+
 services:
   navidrome:
-    container_name: navidromev2
+    container_name: navidrome
     image: deluan/navidrome:latest
-    ports:
-      - "4533:4533"
     environment:
       - PUID=1002
       - PGID=100
@@ -14,7 +13,14 @@ services:
       - /share/CACHEDEV2_DATA/Photo/Music:/music
       - /share/CACHEDEV1_DATA/Containers/downloads:/downloads
       - /share/CACHEDEV1_DATA/Containers/navidrome/data:/data
-    restart: on-failure
-    network_mode: host
+    expose:
+      - "4533"
+    restart: unless-stopped
+    networks:
+      - media_network
+
+networks:
+  media_network:
+    external: true
 
  
