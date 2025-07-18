@@ -1,7 +1,8 @@
 version: "3"
+
 services:
   tautulli:
-    image: linuxserver/tautulli:latest
+    image: lscr.io/linuxserver/tautulli:latest
     container_name: tautulliv2
     environment:
       - PUID=1002
@@ -9,10 +10,11 @@ services:
       - TZ=Europe/London
     volumes:
       - /share/CACHEDEV1_DATA/Containers/tautulli/config:/config
-    ports:
-      - 8181:8181
-    restart: on-failure
-    network_mode: host
+    expose:
+      - "8181"
+    restart: unless-stopped
+    networks:
+      - media_network
 
   watchtower:
     image: containrrr/watchtower
@@ -24,11 +26,12 @@ services:
     volumes:
       - /share/CACHEDEV1_DATA/Containers/watchtower/config:/config
       - /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - 8282:8282
-    restart: on-failure
-    network_mode: host
-  
+    expose:
+      - "8282"
+    restart: unless-stopped
+    networks:
+      - media_network
+
   heimdall:
     image: lscr.io/linuxserver/heimdall:latest
     container_name: heimdall
@@ -38,8 +41,13 @@ services:
       - TZ=Europe/London
     volumes:
       - /share/CACHEDEV1_DATA/Containers/heimdall/config:/config
-    ports:
-      - 8082:8082
-      - 4431:4431
-    network_mode: host
+    expose:
+      - "8082"
+      - "4431"
     restart: unless-stopped
+    networks:
+      - media_network
+
+networks:
+  media_network:
+    external: true
