@@ -26,16 +26,16 @@ services:
     volumes:
       - /share/CACHEDEV1_DATA/Containers/fail2ban/data:/data
       - /var/log:/var/log:ro
-    networks:
-      - host
+    network_mode: host  # ✅ only host networking
+    # ❌ no `networks:` block here
 
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
     <<: *common-attributes
     env_file: .env
-    networks:
-      - host
+    network_mode: host  # ✅ only host networking
+    # ❌ no `networks:` block here
     volumes:
       - /share/CACHEDEV1_DATA/Containers/pihole/etc-pihole:/etc/pihole
       - /share/CACHEDEV1_DATA/Containers/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
@@ -43,8 +43,7 @@ services:
 networks:
   media_network:
     external: true
-  host:
-    external: true
+
 
 
 
