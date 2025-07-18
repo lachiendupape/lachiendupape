@@ -9,11 +9,10 @@ services:
     env_file: .env
     networks:
       - media_network
-      - host
     ports:
       - "80:80"      # HTTP
       - "443:443"    # HTTPS
-      - "81:81"      # Nginx Proxy Manager Admin UI
+      - "81:81"      # Admin UI
     volumes:
       - /share/CACHEDEV1_DATA/Containers/nginx-proxy-manager/data:/data
       - /share/CACHEDEV1_DATA/Containers/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
@@ -33,20 +32,20 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
-    networks:
-      - media_network
-      - host
+    <<: *common-attributes
     env_file: .env
+    networks:
+      - host
     volumes:
       - /share/CACHEDEV1_DATA/Containers/pihole/etc-pihole:/etc/pihole
       - /share/CACHEDEV1_DATA/Containers/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
-    <<: *common-attributes
 
 networks:
   media_network:
-    driver: bridge
+    external: true
   host:
     external: true
+
 
 
 
