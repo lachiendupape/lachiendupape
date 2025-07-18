@@ -26,6 +26,7 @@ services:
     volumes:
       - /share/CACHEDEV1_DATA/Containers/fail2ban/data:/data
       - /var/log:/var/log:ro
+      - /share/CACHEDEV1_DATA/Containers/nginx-proxy-manager/data/logs:/npm-logs:ro
     network_mode: host  # ✅ only host networking
     # ❌ no `networks:` block here
 
