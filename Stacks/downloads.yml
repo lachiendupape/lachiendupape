@@ -3,7 +3,7 @@ version: "3"
 services:
   nzbget:
     image: lscr.io/linuxserver/nzbget:latest
-    container_name: nzbgetv2
+    container_name: nzbget
     environment:
       - PUID=1002
       - PGID=100
@@ -21,7 +21,7 @@ services:
 
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
-    container_name: sabnzbdv2
+    container_name: sabnzbd
     environment:
       - PUID=1002
       - PGID=100
@@ -39,7 +39,7 @@ services:
 
   hydra2:
     image: lscr.io/linuxserver/nzbhydra2:latest
-    container_name: hydra2v2
+    container_name: hydra2
     environment:
       - PUID=1002
       - PGID=100
@@ -55,7 +55,7 @@ services:
 
   jackett:
     image: lscr.io/linuxserver/jackett:latest
-    container_name: jackettv2
+    container_name: jackett
     environment:
       - PUID=1002
       - PGID=100
@@ -72,7 +72,7 @@ services:
 
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
-    container_name: qbittorrentv2
+    container_name: qbittorrent
     environment:
       - PUID=1002
       - PGID=100
@@ -92,7 +92,7 @@ services:
 
   deemix:
     image: registry.gitlab.com/bockiii/deemix-docker:latest
-    container_name: deemixv2
+    container_name: deemix
     environment:
       - PUID=1002
       - PGID=100
