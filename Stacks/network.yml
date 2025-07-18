@@ -35,8 +35,12 @@ services:
     image: pihole/pihole:latest
     <<: *common-attributes
     env_file: .env
-    network_mode: host  # ✅ only host networking
-    # ❌ no `networks:` block here
+    network_mode: bridge  # ✅ bridge instead of host
+    ports:
+      - "5380:80"           # Admin Web UI
+      - "53443:443"         # Optional SSL UI
+      - "5353:53/tcp"       # DNS (TCP)
+      - "5353:53/udp"       # DNS (UDP)
     volumes:
       - /share/CACHEDEV1_DATA/Containers/pihole/etc-pihole:/etc/pihole
       - /share/CACHEDEV1_DATA/Containers/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
