@@ -37,10 +37,10 @@ services:
     env_file: .env
     network_mode: bridge  # ✅ bridge instead of host
     ports:
-      - "5380:80"           # Admin Web UI
-      - "53443:443"         # Optional SSL UI
-      - "5353:53/tcp"       # DNS (TCP)
-      - "5353:53/udp"       # DNS (UDP)
+      - "5380:80"            # Admin UI
+      - "53443:443"          # Optional SSL
+      - "5354:53/tcp"        # DNS over TCP (custom port)
+      - "5354:53/udp"        # DNS over UDP (custom port)
     volumes:
       - /share/CACHEDEV1_DATA/Containers/pihole/etc-pihole:/etc/pihole
       - /share/CACHEDEV1_DATA/Containers/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
