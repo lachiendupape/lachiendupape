@@ -3,7 +3,7 @@ version: "3"
 services:
   tautulli:
     image: lscr.io/linuxserver/tautulli:latest
-    container_name: tautulliv2
+    container_name: tautulli
     environment:
       - PUID=1002
       - PGID=100
