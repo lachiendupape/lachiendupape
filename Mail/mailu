@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  mail:
+    image: mailu/postfix:1.9
+    container_name: mailu_postfix
+    env_file: .env
+    restart: always
+    volumes:
+      - ./maildata:/data
+    ports:
+      - "25:25"      # SMTP
+      - "465:465"    # SMTPS
+      - "587:587"    # Submission
+      - "993:993"    # IMAPS
+    networks:
+      - mail_network
+
+  imap:
+    image: mailu/dovecot:1.9
+    container_name: mailu_imap
+    env_file: .env
+    restart: always
+    volumes:
+      - ./maildata:/data
+    networks:
+      - mail_network
+
+  admin:
+    image: mailu/admin:1.9
+    container_name: mailu_admin
+    env_file: .env
+    restart: always
+    volumes:
+      - ./maildata:/data
+    networks:
+      - mail_network
+    ports:
+      - "8025:80"  # Admin UI (we'll proxy this)
+
+networks:
+  mail_network:
+    driver: bridge
