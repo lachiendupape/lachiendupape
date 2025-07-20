@@ -33,6 +33,8 @@ services:
       - ICECAST_ADMIN_PASSWORD=adminpass
       - ICECAST_PASSWORD=listenpass
     restart: unless-stopped
+    networks:
+      - media_network
 
   liquidsoap:
     image: pltnk/liquidsoap:latest
@@ -47,6 +49,8 @@ services:
     depends_on:
       - icecast
     restart: unless-stopped
+    networks:
+      - media_network
 
 networks:
   media_network:
