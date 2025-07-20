@@ -72,8 +72,8 @@ ombi:
     - TZ=Europe/London
   volumes:
     - /share/CACHEDEV1_DATA/Containers/ombi/config:/config
-  ports:
-    - "3579:3579"
+  Expose:
+    - "3579"
   restart: unless-stopped
   networks:
     - media_network
