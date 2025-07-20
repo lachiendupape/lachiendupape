@@ -78,6 +78,19 @@ services:
     networks:
      - media_network
 
+  gotify:
+    image: gotify/server:latest
+    container_name: gotify
+    environment:
+      - TZ=Europe/London
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/gotify/data:/app/data
+    expose:
+      - "80"
+    restart: unless-stopped
+    networks:
+      - media_network
+
 networks:
   media_network:
     external: true
