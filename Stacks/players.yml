@@ -44,7 +44,6 @@ services:
     volumes:
       - /share/CACHEDEV1_DATA/Containers/liquidsoap/radio.liq:/usr/src/app/radio.liq
       - /share/CACHEDEV2_DATA/Photo/Music:/music:ro
-    command: liquidsoap /usr/src/app/radio.liq
     depends_on:
       - icecast
     restart: unless-stopped
