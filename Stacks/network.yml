@@ -44,6 +44,16 @@ services:
     volumes:
       - /share/CACHEDEV1_DATA/Containers/pihole/etc-pihole:/etc/pihole
       - /share/CACHEDEV1_DATA/Containers/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
+  
+  uptime-kuma:
+    container_name: uptime-kuma
+    image: louislam/uptime-kuma:latest
+    volumes:
+    - /share/CACHEDEV1_DATA/Containers/uptime-kuma:/app/data
+    - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+    - "3001:3001"
+    restart: unless-stopped
 
 networks:
   media_network:
