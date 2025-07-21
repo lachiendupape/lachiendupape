@@ -37,7 +37,7 @@ services:
       - media_network
 
   liquidsoap:
-    image: pltnk/liquidsoap:latest
+    image: pltnk/docker-liquidsoap
     container_name: liquidsoap
     environment:
       - PUID=1002
