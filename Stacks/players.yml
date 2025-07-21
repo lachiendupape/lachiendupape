@@ -37,7 +37,7 @@ services:
       - media_network
 
   liquidsoap:
-    image: savonet/liquidsoap
+    image: savonet/liquidsoap:v2.3.3
     container_name: liquidsoap
     environment:
       - PUID=1002
