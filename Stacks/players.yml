@@ -44,7 +44,7 @@ services:
       - PGID=100
       - TZ=Europe/London
     volumes:
-      - /share/CACHEDEV1_DATA/Containers/liquidsoap/radio.liq:/etc/liquidsoap/script.liq
+      - /share/CACHEDEV1_DATA/Containers/liquidsoap/scriptliq:/etc/liquidsoap/script.liq
       - /share/CACHEDEV2_DATA/Photo/Music:/music:ro
     depends_on:
       - icecast
