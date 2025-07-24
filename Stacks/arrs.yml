@@ -31,6 +31,7 @@ services:
       - /share/CACHEDEV1_DATA/Containers/Sonarr/config:/config
       - /share/CACHEDEV2_DATA/Photo/Tv:/tv
       - "/share/CACHEDEV2_DATA/Photo/Kids TV:/kidstv"
+      - /share/CACHEDEV1_DATA/PLEX/samtv:/samtv 
       - /share/CACHEDEV1_DATA/Containers/downloads/usenet:/downloads
     expose:
       - "8989"
