@@ -22,6 +22,7 @@ services:
   icecast:
     image: infiniteproject/icecast
     container_name: icecast
+    hostname: icecast
     ports:
       - "8000:8000"
     environment:
@@ -46,8 +47,6 @@ services:
     volumes:
       - /share/CACHEDEV1_DATA/Containers/liquidsoap/scripts/script.liq:/etc/liquidsoap/script.liq
       - /share/CACHEDEV2_DATA/Photo/Music:/music:ro
-    depends_on:
-      - icecast
     restart: unless-stopped
     networks:
       - media_network
