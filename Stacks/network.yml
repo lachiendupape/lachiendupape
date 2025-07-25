@@ -29,21 +29,6 @@ services:
       - /share/CACHEDEV1_DATA/Containers/nginx-proxy-manager/data:/logs:ro
     network_mode: host  # ✅ only host networking
     # ❌ no `networks:` block here
-
-  pihole:
-    container_name: pihole
-    image: pihole/pihole:latest
-    <<: *common-attributes
-    env_file: .env
-    network_mode: bridge  # ✅ bridge instead of host
-    ports:
-      - "5380:80"            # Admin UI
-      - "53443:443"          # Optional SSL
-      - "5354:53/tcp"        # DNS over TCP (custom port)
-      - "5354:53/udp"        # DNS over UDP (custom port)
-    volumes:
-      - /share/CACHEDEV1_DATA/Containers/pihole/etc-pihole:/etc/pihole
-      - /share/CACHEDEV1_DATA/Containers/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
   
   uptime-kuma:
     container_name: uptime-kuma
