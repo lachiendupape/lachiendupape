@@ -67,7 +67,9 @@ services:
     image: gotify/server:latest
     container_name: gotify
     environment:
-      - TZ=Europe/London
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London      
     volumes:
       - /share/CACHEDEV1_DATA/Containers/gotify/data:/app/data
     expose:
@@ -75,6 +77,22 @@ services:
     restart: unless-stopped
     networks:
       - media_network
+  
+  igotify:
+    container_name: igotify
+    hostname: igotify
+    image: ghcr.io/androidseb25/igotify-notification-assist
+    restart: unless-stopped
+        networks:
+      - media_network
+    expose:
+      - "8080"
+    volumes:
+      - api-data:/app/data
+    environment:                 # option environment see above note
+      - GOTIFY_URLS: http://gotify.alexlovett.co.uk
+      - GOTIFY_CLIENT_TOKENS: CjuvhC5i27mffcH
+    #  SECNTFY_TOKENS:       ''
 
 networks:
   media_network:

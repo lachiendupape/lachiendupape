@@ -47,6 +47,7 @@ services:
   
   uptime-kuma:
     container_name: uptime-kuma
+    hostname: uptime-kuma
     image: louislam/uptime-kuma:latest
     volumes:
     - /share/CACHEDEV1_DATA/Containers/uptime-kuma:/app/data
