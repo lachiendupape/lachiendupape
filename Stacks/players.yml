@@ -19,7 +19,7 @@ services:
     networks:
       - media_network
 
-azuracast:
+  azuracast:
     container_name: azuracast
     image: azuracast/azuracast:latest
     environment:
