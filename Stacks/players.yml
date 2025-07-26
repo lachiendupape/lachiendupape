@@ -29,6 +29,7 @@ services:
       - AZURACAST_HTTPS_PORT=8444
       - AUTO_ASSIGN_PORT_MIN=8100
       - AUTO_ASSIGN_PORT_MAX=8150
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes
     volumes:
       - /share/CACHEDEV1_DATA/Containers/azuracast/stations:/var/azuracast/stations
       - /share/CACHEDEV2_DATA/Photo/Music:/var/azuracast/uploads/music
