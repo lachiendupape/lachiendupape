@@ -19,24 +19,25 @@ services:
     networks:
       - media_network
 
- # azuracast:
-  #  container_name: azuracast
-  #  image: azuracast/azuracast:latest
-  #  environment:
-  #    - AZURACAST_HTTP_PORT=8080
-   #   - AZURACAST_HTTPS_PORT=8443
-   #   - AUTO_ASSIGN_PORT_MIN=8010
-   #   - AUTO_ASSIGN_PORT_MAX=8050
-   # volumes:
-   #   - /share/CACHEDEV1_DATA/Containers/azuracast/stations:/var/azuracast/stations
-  #    - /share/CACHEDEV2_DATA/Photo/Music:/var/azuracast/uploads/music
-  #    - /share/CACHEDEV1_DATA/Containers/azuracast/data:/var/azuracast
-  #  ports:
-  #    - "8080:8080"     # Internal web UI (NPM will proxy this)
-  #    - "8010-8050:8010-8050"  # Radio station stream ports
-   # restart: unless-stopped
-  #  networks:
-   #   - media_network
+azuracast:
+    container_name: azuracast
+    image: azuracast/azuracast:latest
+    environment:
+      - AZURACAST_HTTP_PORT=8090
+      - AZURACAST_HTTPS_PORT=8444
+      - AUTO_ASSIGN_PORT_MIN=8100
+      - AUTO_ASSIGN_PORT_MAX=8150
+    volumes:
+      - /share/CACHEDEV1_DATA/Containers/azuracast/stations:/var/azuracast/stations
+      - /share/CACHEDEV2_DATA/Photo/Music:/var/azuracast/uploads/music
+      - /share/CACHEDEV1_DATA/Containers/azuracast/data:/var/azuracast
+    ports:
+      - "8090:8090"     # HTTP Web UI
+      - "8444:8444"     # Optional HTTPS Web UI
+      - "8100-8150:8100-8150"  # Streaming ports
+    restart: unless-stopped
+    networks:
+      - media_network
 
 networks:
   media_network:
