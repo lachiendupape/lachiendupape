@@ -23,6 +23,8 @@ services:
     container_name: azuracast
     image: azuracast/azuracast:latest
     environment:
+      - PUID=1002
+      - PGID=100
       - AZURACAST_HTTP_PORT=8090
       - AZURACAST_HTTPS_PORT=8444
       - AUTO_ASSIGN_PORT_MIN=8100
