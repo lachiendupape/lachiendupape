@@ -90,6 +90,9 @@ services:
     volumes:
       - api-data:/app/data
     environment:                 # option environment see above note
+      - PUID=1002
+      - PGID=100
+      - TZ=Europe/London 
       - GOTIFY_URLS: http://gotify.alexlovett.co.uk
       - GOTIFY_CLIENT_TOKENS: CjuvhC5i27mffcH
     #  SECNTFY_TOKENS:       ''
