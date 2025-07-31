@@ -83,7 +83,7 @@ services:
     hostname: igotify
     image: ghcr.io/androidseb25/igotify-notification-assist
     restart: unless-stopped
-        networks:
+    networks:
       - media_network
     expose:
       - "8080"
