@@ -86,7 +86,7 @@ services:
     networks:
       - media_network
     expose:
-      - "8080"
+      - "8101"
     volumes:
       - /share/CACHEDEV1_DATA/Containers/igotify/data:/app/data
     environment:                 # option environment see above note
