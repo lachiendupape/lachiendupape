@@ -88,7 +88,7 @@ services:
     expose:
       - "8080"
     volumes:
-  - /share/CACHEDEV1_DATA/Containers/igotify/data:/app/data
+      - /share/CACHEDEV1_DATA/Containers/igotify/data:/app/data
     environment:                 # option environment see above note
       - PUID=1002
       - PGID=100
