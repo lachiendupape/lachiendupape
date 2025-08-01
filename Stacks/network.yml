@@ -39,6 +39,8 @@ services:
     - /var/run/docker.sock:/var/run/docker.sock
     expose:
     - "3001"
+    networks:
+      - media_network
     restart: unless-stopped
 
 networks:
