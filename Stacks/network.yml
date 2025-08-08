@@ -17,19 +17,6 @@ services:
       - /share/CACHEDEV1_DATA/Containers/nginx-proxy-manager/data:/data
       - /share/CACHEDEV1_DATA/Containers/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
 
-  fail2ban:
-    image: crazymax/fail2ban:latest
-    container_name: fail2ban
-    <<: *common-attributes
-    cap_add:
-      - NET_ADMIN
-    volumes:
-      - /share/CACHEDEV1_DATA/Containers/fail2ban/data:/data
-      - /var/log:/var/log:ro
-      - /share/CACHEDEV1_DATA/Containers/nginx-proxy-manager/data:/logs:ro
-    network_mode: host  # ✅ only host networking
-    # ❌ no `networks:` block here
-  
   uptime-kuma:
     container_name: uptime-kuma
     hostname: uptime-kuma
