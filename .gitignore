@@ -1,3 +1,5 @@
 ﻿# Ignore Ollama and Open WebUI runtime data
 AI\ Project/ollama/
 AI\ Project/openwebui/
+AI\ Project/.env
+AI\ Project/qdrant_data/
